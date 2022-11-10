@@ -1,0 +1,71 @@
+use stream
+db.createCollection('Youtube');
+db.createCollection('Twitch');
+db.createCollection('Pagos');
+
+db.Youtube.insert({_idY:1, nombre:'Vegeta777', horas_semana:8, dias_semana:4, valorSub:15.000,
+videos_semana:5});
+db.Youtube.insert({_idY:2, nombre:'Willyrex', horas_semana:6, dias_semana:2, valorSub:13.000,
+videos_semana:3});
+db.Youtube.insert({_idY:3, nombre:'Luzu', horas_semana:4, dias_semana:3, valorSub:12.000,
+videos_semana:7});
+db.Youtube.insert({_idY:4, nombre:'Mikecraft', horas_semana:8, dias_semana:5, valorSub:10.000,
+videos_semana:9});
+db.Youtube.insert({_idY:5, nombre:'Api', horas_semana:12, dias_semana:6, valorSub:11.000,
+videos_semana:2});
+db.Youtube.insert({_idY:6, nombre:'Fedelobo', horas_semana:10, dias_semana:2, valorSub:9.000,
+videos_semana:1});
+db.Youtube.insert({_idY:7, nombre:'Mixwell', horas_semana:16, dias_semana:4, valorSub:20.000,
+videos_semana:5});
+db.Youtube.insert({_idY:8, nombre:'Tenz', horas_semana:24, dias_semana:7, valorSub:7.000,
+videos_semana:4});
+db.Youtube.insert({_idY:9, nombre:'Soypan', horas_semana:15, dias_semana:5, valorSub:10.000,
+videos_semana:8});
+db.Youtube.insert({_idY:10, nombre:'Gabernicoll', horas_semana:2, dias_semana:1, valorSub:5.000,
+videos_semana:10});
+
+db.Twitch.insert({_idT:1, nombre:'Rubius', horas_semana:24, dias_semana:7, valorSub:15.000,
+videos_semana:4});
+db.Twitch.insert({_idT:2, nombre:'Auron', horas_semana:30, dias_semana:7, valorSub:17.000,
+videos_semana:5});
+db.Twitch.insert({_idT:3, nombre:'WestCol', horas_semana:15, dias_semana:3, valorSub:10.000,
+videos_semana:2});
+db.Twitch.insert({_idT:4, nombre:'Staxx', horas_semana:10, dias_semana:2, valorSub:12.000,
+videos_semana:3});
+db.Twitch.insert({_idT:5, nombre:'Illojuan', horas_semana:15, dias_semana:6, valorSub:20.000,
+videos_semana:4});
+db.Twitch.insert({_idT:6, nombre:'Elded', horas_semana:20, dias_semana:5, valorSub:25.000,
+videos_semana:6});
+db.Twitch.insert({_idT:7, nombre:'Juansguarnizo', horas_semana:15, dias_semana:3, valorSub:10.000,
+videos_semana:3});
+
+db.Pagos.insert({_idPa:1, idY:1, pago_hora:2.500, pago_dia:5.000, valorSub:15.000,
+pago_video:10.000, total:32.500 });
+db.Pagos.insert({_idPa:2, idY:2, pago_hora:3.000, pago_dia:4.000, valorSub:13.000,
+pago_video:15.000, total:35.000 });
+db.Pagos.insert({_idPa:3, idY:3, pago_hora:3.500, pago_dia:2.000, valorSub:12.000,
+pago_video:7.000, total:24.000 });
+db.Pagos.insert({_idPa:4, idT:1, pago_hora:5.000, pago_dia:10.000, valorSub:15.000,
+pago_video:5.000, total:35.000 });
+db.Pagos.insert({_idPa:5, idT:2, pago_hora:6.000, pago_dia:12.000, valorSub:17.000,
+pago_video:4.000, total:39.000 });
+db.Pagos.insert({_idPa:6, idT:3, pago_hora:7.000, pago_dia:9.000, valorSub:10.000,
+pago_video:7.000, total:33.000 });
+
+db.Youtube.find();
+db.Twitch.find({nombre:'Illojuan'});
+db.Twitch.find({videos_semana:4});
+db.Youtube.find({videos_semana:4, nombre:'Soypan'});
+db.Youtube.find({}).sort({'videos_semana':-1}).pretty()
+
+db.Youtube.update({_idY: 1},{$set:{Youtuber:1}})
+db.Youtube.update({_idY: 2},{$set:{Youtuber:2}})
+db.Youtube.update({_idY: 3},{$set:{Youtuber:3}})
+db.Youtube.update({nombre: 'Vegetta777'}, {$set:{dias_semana:7}})
+db.Twitch.update({nombre: 'Rubius'}, {$set:{horas_semana:50}})
+
+db.Youtube.deleteOne({nombre: 'Api'})
+db.Youtube.deleteOne({nombre: 'Mixwell'})
+db.Twitch.deleteOne({nombre: 'WestCol'});
+db.Twitch.deleteOne({nombre: 'Elded'});
+db.Pagos.deleteOne({_idPa: '3'});
